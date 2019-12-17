@@ -16,3 +16,4 @@
 
   - **git pull origin master**
 
+- 반 홈페이지 : https://docs.google.com/spreadsheets/d/1A6YRebENCGpHR0Uvd3Lv2fWPILXb8OlWiSoHgI-oy4M/edit#gid=0
