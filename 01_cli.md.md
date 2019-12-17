@@ -27,4 +27,10 @@
 - git remote
 - git push origin master
 - Git_TIL pdf : bit.do/01_Github_TIL
-- 
+- 추가 변경 방법
+  - git add 파일명
+  - git status 상태확인
+  - git commit -m "남길 말"  => 추가 변경 내용
+  - git push origin master 완료
+  - git status 깨끗
+  - git log 상태 확인
