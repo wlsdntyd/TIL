@@ -12,6 +12,10 @@
   - `git log` : 기록 보기
   - `git log --oneline` : 기록 한줄 보기
   - `git status` : git 상태보기
+  - `git remote` : 현재 원격저장소로 무엇(origin)이 등록되어 있는 지 알 수 있다.
+  - `git remote show origin` : 연동되어 있는 주소와 브런치에 대해 볼 수 있다.
+  - `git remote rm` + 원격저장소 이름 : 원격저장소 제거
+  - `git log --pretty=oneline` : commit 내용 출력
 
 - ### Github 파일 추가
 
@@ -27,6 +31,7 @@
   - `cd ..` : 상위 폴더로 이동
   - `cd ~` : 홈으로 이동
   - `git init` : 폴더를 깃으로 설정(master)
+    - 다른 폴더를 깃으로 설정시 숨긴 파일 보기로 .git 삭제 => 마스터 권한 삭제
 
 - ### 이메일, 이름 설정하기
 
@@ -35,9 +40,13 @@
 
 - ### Github에 파일 추가
 
+  - `git config --global user.name` + 이름
+  - `git config --global user.email` + 이메일 주소
   - `git remote add` <원격저장소 이름> <원격 서버 주소>
   - `git pull origin(폴더명) master`
   - `git add` 파일이름
+  - `git remote rename` +현재 저장소 이름 + 바꾸고 싶은 이름 : 원격저장소 이름 바꾸기
+  - `git remote -v` : 현재 원격저장소 이름과 주소들 목록 보기
 
 - ### Git branch
 
