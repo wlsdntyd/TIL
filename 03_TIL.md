@@ -1,12 +1,23 @@
-- 포트폴리오 만들기
-  - repository 만들기
-  - Terminal > New Terminal
-  - git bash 창 활성화
-  - git init git add .
-- `code .` : 현재 폴더의 코드 보기
-- 프로그래밍 언어 : 3형식
+## Git 사용법
 
-- 저장 조건 반복(while)
 
-- 파이썬 챗봇 : https://py.hphk.io/
-- 
+
+- ### 파일 업로드
+
+  - **git** 연동 폴더에 파일 추가
+  - **git status** 상태 확인
+  - **git add .** 추가하기
+  - **git commit -m "업로드 내용" **:파일 업로드
+  - **git push origin master**
+
+- ### 1. 파일 가져오기
+
+  - **git clone [https://github](https://github/) 주소**
+
+- ### 2. 파일 가져오기
+
+  - **git pull origin master**
+
+- 반 홈페이지 : https://docs.google.com/spreadsheets/d/1A6YRebENCGpHR0Uvd3Lv2fWPILXb8OlWiSoHgI-oy4M/edit#gid=0
+
+- 추가사항

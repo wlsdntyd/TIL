@@ -1,42 +1,48 @@
 ## Python
 
-- ctrl + / : 주석 처리
+- **ctrl + / : 주석 처리**
 
-- array = [1, 2, 3, 'four', 'five']
+- **배열**
 
-- print(array)
+  - - array = [1, 2, 3, 'four', 'five'] , array = []
+  - - print(array[0 : 3]) : 첫번째부터 네번째 출력
+  - - print(array[4:]) > 5번째부터 마지막까지 출력
+  - - print(array[-1]) > 마지막 출력
 
-- print(array[0 : 3]) > 첫번째부터 네번째 출력
+- **변수의 자료형**
 
-- print(array[4:]) > 5번째부터 마지막까지 출력
+  - - type(변수) : 자료형 출력
 
-- print(array[-1]) > 마지막 출력
+- **그 외 함수**
 
-- dust 
+  - range()
 
-- if a : (= a == )
+    - range(10) : [0, 1, 2, 3, ,,,,, 9]
+    - range(5, 10) : [5, 6, 7, 8, 9]
 
-  ### if문
+  - 딕셔너리
 
-  if 30 < a and a < 150 :
+    - dust = {'영등포구' : 50, '강남구' : 40}
+    - print(dust['영등포구']) 출력 시 50
+    - dust_two = dict(abc=50) > print(dust_two) > {'abc' : 50} 출력
 
-    print("두 조건에 부합합니다")
+  - import random
 
-  elif a > 150 or a > 10 :
+    ```python
+    import random
+    coffee = ['아아', '뜨아', '라떼']
+    co = random.choice(coffee)
+    print(co)
+    ```
 
-    print("둘 중 하나가 맞습니다.")
+    - 랜덤하게 '아아' or '뜨아' or '라떼' 중 하나 출력
 
-  ### while and for
+  - if elif else
 
-  numbers = list(range(10))
+  - 반복문
 
-  print(numbers)
-
-  for number in numbers:
-
-    print(number, "asd")
-
-    print(number)
+    - while
+    - for 변수 in 변수
 
   
 
