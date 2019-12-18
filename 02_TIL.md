@@ -54,7 +54,7 @@
   - `git branch new ` new라는 세상을 만듬
   - `git switch new` new라는 세상으로 이동 (=checkout)
   - git merge new 합치는 과정, 중심이 될 곳에서 병합
-    - 관리자모드에서 esc연타 후 wq 작성(저장 후 나옴)
+    - 관리자모드에서 esc연타 후 :wq 작성(저장 후 나옴)
   - git log --oneline --graph 그래프 형식으로 보여줌
   - https://git-school.github.io/visualizing-git/  git 연습 도구
   - git branch -d new 뉴라는 세상을 지움
