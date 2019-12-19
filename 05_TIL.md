@@ -48,4 +48,8 @@
   print(exchange.text)
   ```
 
-  
+  - pip install flask
+
+  - alt + shift + k
+  - jinja 
+  - 내일 텔레그램 챗봇 20
