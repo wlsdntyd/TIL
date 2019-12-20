@@ -19,7 +19,8 @@ def opgg():
 
     tier = data.select_one('#SummonerLayoutContent div.TierRank').text
     win = data.select_one('#SummonerLayoutContent span.wins').text
-    return render_template('opgg.html', userName = userName, url = url, tier = tier, win = win[0:3] )
+    lose = data.select_one('#SummonerLayoutContent .losses').text
+    return render_template('opgg.html', userName = userName, url = url, tier = tier, win = win[0:3], lose = lose[0:3] )
 
 if __name__ == "__main__":
     app.run(debug=True)

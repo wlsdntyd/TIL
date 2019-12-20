@@ -12,7 +12,7 @@ def hello():
 def fstring():
     fstring = "김진우"
     # print("제 이름은" + {fstring} )
-    return f"제 이름은 {fstring} 입니다."    
+    return f"제 이름은 {fstring} 입니다."
 
 @app.route('/hi')
 def hi():
