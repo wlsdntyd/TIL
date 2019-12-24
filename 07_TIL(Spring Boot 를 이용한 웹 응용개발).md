@@ -20,8 +20,9 @@
   
   - 메소드 @GetMapping / @RequestMapping
   
--  @ResponseBody @RestControlloer
+-  @ResponseBody @RestControlloer > 사용 시 ResponseBody 같이 안써도 됨.
   
+  - RestController = ResponseBody + Controller
   - json 또는 html
   
 - @RequestParam , @ModelAttribute
@@ -77,3 +78,7 @@
   페이지 이동하는 html 형식. [1 2 3 4 5 6 7 8 9] [10 11 12 13 14 .... 19 20]
 
 - shift + alt + A : 열 편집기능
+
+- [https://www.inflearn.com/courses?s=%EB%B0%B1%EA%B8%B0%EC%84%A0](https://www.inflearn.com/courses?s=백기선)
+
+  - 스트링 부트 무료 강의 참고
