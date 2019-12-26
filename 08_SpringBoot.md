@@ -46,15 +46,19 @@ th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}
 ```
 
 - HTTP : Hyper Text Transfer Protocol [Secure] 
+  
   - Stateless 상태를 기억하지 못함 정보를 기억하고 있는 쿠키?
 - client(cookie)         <>          server(session공간
 - AOP(관점지향 프로그래밍)(임시저장공간) : 1순위 제일 강력함
+  
   - 어떠한 클래스든, 어떠한 메소드든 대상, 스프링의 기능
 - Filter : 접속하는 주소(url)를 대상
+  
   - 자바의 고유 기능
 - Interceptor : 접속하는 주소(url)를 대상
-  - 스프링의 기능
-
+  
+- 스프링의 기능
+  
 - Ioc /DI (inversion of Control / Dependency Injection) : 별로 안중요
 
   - 만드는 IoC 
@@ -68,3 +72,4 @@ th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}
   ```
 
   
+
