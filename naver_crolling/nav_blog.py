@@ -1,21 +1,20 @@
 import requests
-from selenium import webdriver
+from bs4 import BeautifulSoup
 
 search = input("검색어를 입력하세요 : ")
 baseurl = f"https://search.naver.com/search.naver?date_from=&date_option=0&date_to=&dup_remove=1&nso=&post_blogurl=&post_blogurl_without=&query={search}&sm=tab_pge&srchby=all&st=sim&where=post&start=1"
 url = baseurl + search
 html = requests.get(url).text
 data = BeautifulSoup(html, 'html.parser')
-setdata = data.find_all(class_ = "sh_blog_title")
+li = data.select('ul.type01 > li')
 
-n = 1
-
-for i in setdata:
-
-    print(i['title'])
-
-    print(i['href'])
-
-    print("%d번째 자료 출력" % n)
-
-    n += 1
+for i in li:
+    img = i.select_one('img')
+    src = img['src']
+    title_href = i.select_one('li > dl > dt > a')
+    title = title_href['title']
+    href = title_href['href']
+    print(title)
+    print(href)
+    print(src)
+    print("")
