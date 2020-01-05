@@ -14,7 +14,9 @@ for i in li:
     title_href = i.select_one('li > dl > dt > a')
     title = title_href['title']
     href = title_href['href']
+    passage = i.select_one('dd.sh_blog_passage')
     print(title)
+    print(passage.text)
     print(href)
     print(src)
     print("")
