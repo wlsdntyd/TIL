@@ -153,3 +153,17 @@ print('Child2', dir(child2))
 > 클래스 변수는 부모 클래스를 상속받은 자식 클래스에는 존재하지만 인스턴스 변수(self.money)는
 >
 > super()._init__() (부모클래스의 생성자 메서드를 호출)을 쓰지 않으면 가져올 수 없다.
+
+```python
+from bs4 import BeautifulSoup as bs
+from pprint import pprint	# print보다 심플하게 보여주는 함수
+import requests
+
+html = requests.get('https://search.naver.com/search.naver?query=날씨')
+soup = bs(html.text, 'html.parser')
+data1 = soup.find('div',{'class':'detail_box'})	# find함수: 하나만 찾아줌.
+data2 = data1.findAll('dd')	# finAll함수: 다 찾아줌. 리스트 형식 반환
+pprint(data2[0])	# 리스트 형식이여서 첫번째 데이타를 가져올 수 있음.
+```
+
+> dd태그가 많을 때 어떻게 접근할지 몰랐는데 깔끔하게 정리되서 좋다.
