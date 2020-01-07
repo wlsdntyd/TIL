@@ -44,7 +44,7 @@ while num <= 50: # for문에 의해 숫자가 더해져 50번 반복.
 ```python
 a = 5
 def sum():
-    a = 10
+    a = 10		# 수정: 함수 안의 변수는 전역변수와 별개. 전역변수를 불러온게 아님
     return a	# 함수 안에서만 a값이 10 밖으로 나오면 다시 5
 print(sum())
 def div():
