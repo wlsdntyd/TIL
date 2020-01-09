@@ -1,0 +1,21 @@
+<style>
+.col-lg-4{
+width : 300px; height : 400px;
+justify-content: space-between
+}
+p { font-size: 15px;
+text-align:center;
+}
+.card-img-top {   height: 150px;
+
+text-align:center;
+}
+.card-body{
+overflow: hidden;
+}
+h5.card-title{
+font-size: 17px;
+font-weight: bold;
+text-align:center;
+}
+</style>
