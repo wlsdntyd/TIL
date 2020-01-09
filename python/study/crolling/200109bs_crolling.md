@@ -114,3 +114,31 @@ print(Email)
 > post방식으로 정보를 보내고 s.get은 s에 requests.Sesson()정보가 담겨 있어 get만 쓴 거 같다.
 >
 > findAll로 불러오면 iterable형식이라는 것과 이에 접근할 땐 인덱스 번호로 접근해야한다는 것을 알아두자.
+
+```python
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from time import sleep
+
+driver = webdriver.Chrome('C:\chromedriver.exe')
+driver.get('https://nid.naver.com/nidlogin.login')
+# 타임을 안 쓰면 너무 빨라서 로그인이 안 된다.
+sleep(1)
+driver.find_element_by_name('id').send_keys("아이디")
+sleep(2)
+driver.find_element_by_name('pw').send_keys("비밀번호")
+# xpath로 복사해 로그인 버튼 누르는 코드
+driver.find_element_by_xpath('//*[@id="log.login"]').click()
+
+driver.get('https://mail.naver.com/')
+html = driver.page_source
+# lxml이여서 당황,, html로 파싱되는게 있는 반면 lxml로 파싱되는 웹 페이지가 있다.
+soup = BeautifulSoup(html, 'lxml')
+
+title_list = soup.find_all('strong', 'mail_title')# strong객체의 class:mail_title을 불러옴
+for title in title_list:
+    print(title.text)
+```
+
+> 네이버 자동 로그인 및  메일 정보 가져오기
+
