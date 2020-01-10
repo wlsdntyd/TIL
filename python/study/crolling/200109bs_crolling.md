@@ -57,7 +57,7 @@ i = 1
 
 for sub in subjects:
     print('(', i, '/', len(subjects), ')', sub)
-    req = requests.get("https://basicenglishspeaking.com/" + subjects[0])
+    req = requests.get("https://basicenglishspeaking.com/" + sub)
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
     qnas = soup.findAll('div', {"class": "sc_player_container1"})
