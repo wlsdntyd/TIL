@@ -99,3 +99,21 @@ menu = SelectMenu(['짬뽕', '초밥', '쌀국수', '주꾸미'])
 print(menu.get_menu())
 ```
 
+```python
+with open('document.txt', 'rt') as f:
+    texts = f.read()
+texts = texts.replace("\n", " ")
+texts = texts.split(" ")  # 반환 값이 리스트 형식이다.
+result = {}
+for text in texts:
+    num = texts.count(text)
+    result[text] = num
+    while True:
+        if text in texts:
+            texts.remove(text)
+        else:
+            break
+print(result)
+```
+
+> 강의 시간에 내주신 문제. 다른 방식으로 접근하려는데 머리만 아프다.
