@@ -117,3 +117,23 @@ print(result)
 ```
 
 > 강의 시간에 내주신 문제. 다른 방식으로 접근하려는데 머리만 아프다.
+
+```python
+import operator
+
+with open('document.txt', 'rt') as f:
+    texts = f.read()
+texts = texts.replace("\n", " ")
+texts = texts.split(" ")  # 반환 값이 리스트 형식이다.
+result = {} # = dic()
+for text in texts:
+    if text in result:
+        result[text] = result[text] + 1	# 반복하면서 같은 단어가 있을 때 마다 1씩 증가
+    else:
+        result[text] = 1	# 같은 단어가 없다면 그냥 1
+result_list = sorted(result.items(), key = operator.itemgetter(1), reverse = True)
+result_list = list(result_list)
+print(result_list[:5])
+```
+
+> 
