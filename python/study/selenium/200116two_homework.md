@@ -50,3 +50,42 @@ driver.close()
 
 > 16일 첫 번째 문제 완성,,,,, 스스로 해낸게 대단하다.
 
+```python
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+driver = webdriver.Chrome('chromedriver.exe')
+driver.implicitly_wait(10)
+driver.get('http://info.nec.go.kr/main/showDocument.xhtml?electionId=0000000000&topMenuId=VC&secondMenuId=VCCP09')
+driver.find_element_by_css_selector('#electionType1').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#electionName').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#electionName > option:nth-of-type(2)').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#electionCode').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#electionCode > option:last-of-type').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#cityCode').click()
+time.sleep(1)
+driver.find_element_by_css_selector('#cityCode > option:nth-of-type(2)').click()
+time.sleep(1)   # 타임슬립 없으면 너무 빠르다.
+driver.find_element_by_css_selector('#searchBtn').click()   
+# 검색 화면 출력
+i = [2,3,6,7,9,18]
+for n in range(6):
+    num = i[n]
+    list1 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(1)')
+    list4 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(4)')
+    list5 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(5)')
+    list6 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(6)')
+    print(list1.text, list4.text, list5.text, list6.text, end=" ")
+    print("")
+```
+
+> 16일 두 번째 문제. 잘 풀은 거 같은데 한 줄 출력이 안 된다.
