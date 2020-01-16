@@ -84,8 +84,8 @@ for n in range(6):
     list4 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(4)')
     list5 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(5)')
     list6 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(6)')
-    print(list1.text, list4.text, list5.text, list6.text, end=" ")
+    print(print(str(list1.text).replace('\n'," "), str(list4.text).replace('\n'," "), str(list5.text).replace('\n'," "), str(list6.text).replace('\n'," "), end=" "))
     print("")
 ```
 
-> 16일 두 번째 문제. 잘 풀은 거 같은데 한 줄 출력이 안 된다.
+> 16일 두 번째 문제 다 풀었다
