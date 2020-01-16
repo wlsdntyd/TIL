@@ -84,7 +84,7 @@ for n in range(6):
     list4 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(4)')
     list5 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(5)')
     list6 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(6)')
-    print(print(str(list1.text).replace('\n'," "), str(list4.text).replace('\n'," "), str(list5.text).replace('\n'," "), str(list6.text).replace('\n'," "), end=" "))
+    print(str(list1.text).replace('\n'," "), str(list4.text).replace('\n'," "), str(list5.text).replace('\n'," "), str(list6.text).replace('\n'," "), end=" ")
     print("")
 ```
 
