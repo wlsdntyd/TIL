@@ -11,7 +11,7 @@ def get_images(keyword):
     print("접속중")
     driver = webdriver.Chrome('./chromedriver.exe')
     driver.implicitly_wait(30)
-
+	# implicitly_wait: 브라우저 드라이버가 페이지 호출을 해당 시간(초)동안 대기해주는 것.
     url = f'https://search.naver.com/search.naver?where=image&sm=tab_jum&query={keyword}'
     driver.get(url)
 
