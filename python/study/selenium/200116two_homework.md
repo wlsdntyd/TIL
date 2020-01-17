@@ -78,14 +78,15 @@ time.sleep(1)   # 타임슬립 없으면 너무 빠르다.
 driver.find_element_by_css_selector('#searchBtn').click()   
 # 검색 화면 출력
 i = [2,3,6,7,9,18]
+j = [1,4,5,6]
 for n in range(6):
     num = i[n]
-    list1 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(1)')
-    list4 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(4)')
-    list5 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(5)')
-    list6 = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type(6)')
-    print(str(list1.text).replace('\n'," "), str(list4.text).replace('\n'," "), str(list5.text).replace('\n'," "), str(list6.text).replace('\n'," "), end=" ")
+    for k in range(4):
+        num1 = j[k]
+        lists = driver.find_element_by_css_selector(f'tbody > tr:nth-child({num}) > td:nth-of-type({num1})')
+        print(str(lists.text).replace('\n'," "), end=" ")
     print("")
+driver.close()
 ```
 
 > 16일 두 번째 문제 다 풀었다
