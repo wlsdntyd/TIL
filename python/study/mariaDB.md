@@ -16,5 +16,7 @@ dml 조작
 
 dcl 제어
 
-services.msc
+윈도우 + R >>> services.msc 실행
+
+서비스 끄고 싶다면 m을 눌러 mariaDB를 선택 후 중지하면 됨.
 
