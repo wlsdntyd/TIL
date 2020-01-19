@@ -92,7 +92,7 @@ class SelectMenu:
     def __init__(self, lists):
         self.lists = lists      
     def get_menu(self):
-        num = random.randint(0, 3)	# randint(0,len(self.lists))
+        num = random.randint(0, 3)	# randint(0,len(self.lists)-1)
         result = self.lists[num]
         return result
 menu = SelectMenu(['짬뽕', '초밥', '쌀국수', '주꾸미'])
