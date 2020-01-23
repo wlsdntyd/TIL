@@ -1,5 +1,7 @@
 ## DataBase  설계
 
+eclipse 에서 exerd 주소 복사한거 help > install new sofrware 주소 붙여넣기 > 설치 
+
 다 대 다 관계에서는 새로운 테이블이 필요함 
 
 일 대 다 관계에서는 다 쪽에 일이 붙음 외래키로 사용 대부분 일 대 다 경우가 많음
