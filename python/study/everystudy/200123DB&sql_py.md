@@ -66,3 +66,42 @@ conn.close()
 ```
 
 > 파이썬을 이용한 sql  데이터 수정
+
+```PYTHON
+import pymysql
+conn = pymysql.connect(
+    host='localhost', user='root', password='1234',
+    db='pythondb', charset='utf8')
+cursor = conn.cursor()
+sql = '''CREATE TABLE MEMBER(
+            NUM INTEGER PRIMARY KEY AUTO_INCREMENT,
+            NAME VARCHAR(30),
+            EMAIL VARCHAR(30),
+            C_DATE DATETIME ) '''
+cursor.execute(sql) # SQL 실행
+conn.commit()
+cursor.close()
+conn.close()
+```
+
+> 선 데이터베이스 생성 후 실행, 테이블 열을 설정해줌.
+
+```PYTHON
+import pymysql
+conn = pymysql.connect(
+ host='localhost', user='root', password='1234',
+ db='pythondb', charset='utf8')
+cursor = conn.cursor()
+sql = '''CREATE TABLE ARTICLE (
+            ID INT PRIMARY KEY AUTO_INCREMENT,
+            TITLE VARCHAR(30),
+            CONTENT VARCHAR(30),
+            WRITER VARCHAR(30),
+            HIT INT,
+            C_DATE DATETIME)'''
+cursor.execute(sql)
+conn.commit()
+cursor.close()
+conn.close()
+```
+
