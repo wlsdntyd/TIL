@@ -80,3 +80,20 @@ else:
 ```
 
 > 코딩도장에 있던 문제 깔끔~~하게 푼 거 같다. 남들은 sort해서 풀었던데 뭐 방법은 많으니.
+
+```python
+nums = input()
+if [ i for i in range(10) if nums.count(str(i)) == 1] == [j for j in range(10)]:
+    print("True")
+else:
+    print("False")
+```
+
+> 심심해서 짧게 구현해봤다. 굿굿!
+
+```python
+nums = input()
+print("True" if len(nums) == len(set(nums)) == 10 else "False")
+```
+
+> 풀이보니 set으로 중복을 제거해서 열 개의 숫자가 한번씩만 쓰여졌는지 비교하는 코드. 깔끔하네.
