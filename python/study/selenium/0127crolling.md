@@ -96,7 +96,7 @@ execute_script("javascript:toSMPPIntgrSrchGoodsList('');")
 > 자료 가져오기 전 페이지 완료 상태
 
 ```python
-# item_list 막혀서 새로 짜야됨.
+# item_list
 item_list = driver.find_elements_by_css_selector("tbody > tr > td > a[href^='javascript:toSMPPGoodsDtlInfo(']")
 script_list = []
 
@@ -111,6 +111,22 @@ book.save(filename)	# 저장.
 with pd.ExcelWriter(filename, engine='openpyxl', mode='a') as writer:
     writer.book = book
     writer.sheets = {ws.title: ws for ws in book.worksheets}
+    
+    for idx, script in enumerate(script_list):
+        execute_script(script)
+        print(idx)
+        sleep(1)	# 원하는 값이 [0]에 있고, 행을 열로 써야해서 transpose()해줌
+        spec = pd.read_html(driver.page_source, index_col=0)[0].transpose()
+        if idx == 0:	# map(자료형or함수, 데이터): 데이터를 함수실행시킨 값으로 바꿔줌.
+            spec.columns = map(lambda a: a.replace(" :", ""), spec.columns)
+            spec.to_excel(writer, startrow=0, sheet_name='Sheet', index=False)
+        else:  # 두 번째부터는 열 제목을 빼고 출력해야되기때문에.
+            spec.to_excel(writer, startrow=writer.sheets['Sheet'].max_row, sheet_name='Sheet', index=False, header=False)
+        
+        img = driver.find_element_by_css_selector('img[src^="http://img.g2b.go.kr:7070/Resource/CataAttach/XezCatalog/XZMOK/"]').get_attribute('scr')
+        # 다운로드에서 타입에러가 뜨는데 왜 그런지 모르겠다.
+        download(img, os.path.join(DOWNLOAD_DIR, f'{idx}.png'))
+    writer.save()
 ```
 
-> 나중에 추가.
+> 한글파일에 이미지 저장까지는 해야되서 몇일은 걸릴 듯 싶다.
