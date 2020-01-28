@@ -103,7 +103,7 @@ script_list = []
 for i in item_list:	# 스크립트 주소 가져와서 리스트에 저장함.
     script = i.get_attribute("href")
     script_list.append(script)
-
+			# r : 역슬래시가 한개일 경우 오류가 날 수 있는데 r을 써서 오류 방지.
 filename = r"C:\Users\달려라\Desktop\excel\chair_list.xlsx"   # 엑셀 파일 생성.
 book = Workbook()   # openpyxl.Workbook
 book.save(filename)	# 저장.
