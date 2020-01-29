@@ -1,0 +1,19 @@
+<body>
+    <h1>Shop!!!</h1>
+    <hr>
+    {% for item in show %}
+        <h3>{{item}}</h3>
+        <!-- <h3>{{item.shop_desc}} / {{ item.rest_date }}</h3>
+        <h3>{{item}} / {{ item.img_path }}</h3> -->
+    {% endfor %}
+</body>
+
+<!-- <body>
+    <h1>Shop!!!</h1>
+    <hr>
+    {% for item in show %}
+        <h3>{{item.shop_id}} / {{ item.shop_name }}</h3>
+        <h3>{{item.shop_desc}} / {{ item.rest_date }}</h3>
+        <h3>{{item.parking_info}} / {{ item.img_path }}</h3>
+    {% endfor %}
+</body> -->

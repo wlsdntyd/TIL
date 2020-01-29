@@ -29,7 +29,7 @@ def execute_script(script):     # 사이트가 느려서 스크립트 실행이 
         except JavascriptException:
             sleep(0.5)
 
-DOWNLOAD_DIR = r"C:\Users\달려라\Desktop\imgs"
+DOWNLOAD_DIR = r"C:\Users\달려라\Desktop\imgs\"
 driver = webdriver.Chrome("chromedriver.exe")
 driver.get("http://shopping.g2b.go.kr/")
 driver.switch_to_frame('sub')
@@ -124,7 +124,7 @@ with pd.ExcelWriter(filename, engine='openpyxl', mode='a') as writer:
             spec.to_excel(writer, startrow=writer.sheets['Sheet'].max_row, sheet_name='Sheet', index=False, header=False)
         
         img = driver.find_element_by_css_selector('img[src^="http://img.g2b.go.kr:7070/Resource/CataAttach/XezCatalog/XZMOK/"]').get_attribute('scr')
-        # 다운로드에서 타입에러가 뜨는데 왜 그런지 모르겠다.
+        # 다운로드에서 타입에러가 뜨는데 왜 그런지 모르겠다. 위에 역슬래쉬 안 적음
         download(img, os.path.join(DOWNLOAD_DIR, f'{idx}.png'))
     writer.save()
 ```
