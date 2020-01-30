@@ -29,7 +29,7 @@ def execute_script(script):     # 사이트가 느려서 스크립트 실행이 
         except JavascriptException:
             sleep(0.5)
 
-DOWNLOAD_DIR = r"C:\Users\달려라\Desktop\imgs\"
+DOWNLOAD_DIR = r"c:\users\달려라\desktop\imgs"	# 역슬래시 인식을 위해 문자열 앞에 r을 씀
 driver = webdriver.Chrome("chromedriver.exe")
 driver.get("http://shopping.g2b.go.kr/")
 driver.switch_to_frame('sub')
@@ -130,3 +130,5 @@ with pd.ExcelWriter(filename, engine='openpyxl', mode='a') as writer:
 ```
 
 > 한글파일에 이미지 저장까지는 해야되서 몇일은 걸릴 듯 싶다.
+>
+> 타입에러는 지웠다가 다시 잘 적으니 해결됐다.
