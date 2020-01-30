@@ -1,10 +1,9 @@
 ```python
 n = int(input())
 
-result = 0
-num = 0
-
 for _ in range(n):
+    num = 0
+    result = 0
     st = input("O,X 입력: ")
     for j in st:
         if j == "O":
@@ -19,6 +18,6 @@ for _ in range(n):
     print(result)
 ```
 
-> "OOOXXXOOXO" O의 개수만큼 1+2+3 + 1+2 + 1 을 구하는 문제.
+> "OOOXXXOOXO" O의 개수만큼 1+2+3 + 1+2 + 1 을 구하는 문제. 
 >
-> 열심히 풀었는데 값이 중복된다. 오답,,
+> 초기화를 제대로 안 해줘서 삽질 좀 했다. 그래도 잘 풀었으니 만족.
