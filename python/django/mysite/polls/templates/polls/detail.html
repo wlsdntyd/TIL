@@ -1,0 +1,16 @@
+<h1>{{question.question_text}}</h1>
+
+<form method="post" action="{% url 'vote' question.id %}">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" value="{{ choice.id }}">
+    <p>{{ choice.choice_text}}</p>
+{% endfor%}
+    <input type="submit" value="투표">
+</form>
+<button onclick="move()">투표결과 확인</button>
+<script>
+    function move() {
+        location = '/polls/{{ question.id }}/results/'
+    }
+</script>
