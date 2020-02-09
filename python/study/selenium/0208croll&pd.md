@@ -36,11 +36,16 @@ for i in range(300):
     time.sleep(2)
 driver.close()
 
+for i in range(300):
+    f.iloc[i,0] = f.iloc[i,0] + '+' + str(i+1)  # 이름 바꾸기
+    urlretrieve(f.iloc[i,2], f'./imgs/{i+1}.png')   # 이미지 다운
+    f.iloc[i,2] = f"./imgs/{i+1}.png"   # r_img에 경로 저장
+
 f['id'] = [ i for i in range(1,301) ]
 f['Latitude'] = Latitude
 f['longitude'] = longitude
 f = f[['id','r_name','r_kind','r_img','des','address','Latitude','longitude','closetime','number']]
-f.to_csv('./food_complete.csv', header=True, index=False)
+f.to_csv('./food_oneimg.csv', header=True, index=False)
 ```
 
-> 힘들게 구현한 구글 지도에서 위도, 경도 따오기.
+> 힘들게 구현한 구글 지도에서 위도, 경도 따오기. + 이미지 다운 및 열 값 변경
