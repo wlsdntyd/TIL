@@ -1,5 +1,5 @@
-파이썬이나 하자
+웹이나 하자
 
-
-
-https://hashcode.co.kr/code_runners : 파이썬 코드 실행 주소
+여러 프로젝트 해보기
+자바 언어 익히기
+SQL
