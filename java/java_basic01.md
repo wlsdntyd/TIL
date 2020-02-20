@@ -61,5 +61,29 @@ int age; // 동물의 나이
 
 
 
-## Main 메소드
+## 자료형
+
+```java
+boolean isFun = false;	// boolean은 true,false만.
+char c = "f";
+int x = 59;
+long bing = 34545452134L; // long은 뒤에 L을 붙인다.
+float f = 32.4f;	// float은 뒤에 f
+double d = 3434343.5;	// float보다 큰 숫자를 표현할 때 double
+```
+
+
+
+## 타입(형)변환
+
+> 크기 비교 : byte < short,char < int < long < float < double
+
+```java
+int x = 50000;
+long y = x;			// 암묵적 형변환 에러 없음. 작은 타입에서 큰 타입으로.
+--------------
+long x2 = 10000;
+int y2 = x2;		// 큰 타입에서 작은 타입으로 바꿔서 에러 발생.
+int y2 = (int) x2;	// 강제 형변환을 해줘야 정상적으로 처리 가능.
+```
 
