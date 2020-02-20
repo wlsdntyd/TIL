@@ -87,3 +87,19 @@ int y2 = x2;		// 큰 타입에서 작은 타입으로 바꿔서 에러 발생.
 int y2 = (int) x2;	// 강제 형변환을 해줘야 정상적으로 처리 가능.
 ```
 
+```java
+int a = 5;
+int b = 2;
+System.out.println(a / b);	// 결과값은 (int)2 int 끼리의 연산은 결과도 int
+System.out.println(a / (double)b);	// 결과값 (double)2.5
+```
+
+
+
+## 연산자
+
+```java
+(a && b) // && >> and 연산자
+(a || b) // || >> or 연산자
+```
+
