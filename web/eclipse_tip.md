@@ -2,3 +2,6 @@
 
 > **sysout + CTRL + SPACE**
 
+## package import
+
+> Ctrl + Shift + O
