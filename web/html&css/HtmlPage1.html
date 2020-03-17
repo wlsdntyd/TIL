@@ -5,63 +5,113 @@
     <meta charset="utf-8" />
     <title>jinoo blog</title>
     <style>
-		
-		form {
+        form {
             margin: 0 auto;
             padding: 20px;
-            background-color : #b8eaa9;
-            border : 5px solid #808080;
-            width : 350px;
-            height : auto;
+            background-color: #b8eaa9;
+            border: 5px solid #808080;
+            width: 350px;
+            height: auto;
             border-radius: 20px;
-		}
-		footer > p {
-		    font-weight : bold;
         }
-		#header, #footer {
+
+        footer > p {
+            font-weight: bold;
+        }
+
+        #header, #footer {
             margin: 0 auto;
             padding: 10px;
-			width: 500px;
-			height: 50px;
-			border: 1px solid #ff0000;
-			font-size: 2em;
-			font-weight: bold;
-			text-align: center;
-			background-color: aliceblue;
-		}
-		nav li:hover {
+            width: 500px;
+            height: 50px;
+            border: 1px solid #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            background-color: aliceblue;
+        }
+
+        nav li:hover {
             color: blue;
             font-weight: bold;
             font-size: 2em;
-		}
-		header div#ha ~ p {
+        }
+
+        header div#ha ~ p {
             font-weight: bold;
-		}
-		nav li:active {
-			color: red;
-		}
-		ul > li:nth-child(2n+1){
-			font-weight: bold;
-		}
+        }
+
+        nav li:active {
+            color: red;
+        }
+
+        ul > li:nth-child(2n+1) {
+            font-weight: bold;
+            font-size: 2em;
+        }
+
+        nav li::first-letter {
+            font-size: 2em;
+        }
+
+        nav li > a::after {
+            content: ' - ' attr(href);
+        }
+
+        nav li:not(.gg) {
+            background-color: aqua;
+        }
+
+        header > p::selection {
+            background-color: darkgoldenrod;
+            color: yellow;
+        }
+
+        header p {
+            border: 3px solid #ff0000;
+            float:left;
+            width:100px;
+            height:100px;
+            line-height:100px;
+            text-align:center;
+            background-color: red;
+            box-sizing:border-box;
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+        nav > p {
+            display:inline-block;
+            width:50px; height:50px;
+            background-color:green;
+            text-align:center;
+            line-height:50px;
+            font-weight:bold;
+            font-size:2em;
+            margin:15px;
+        }
+        header a {
+            text-decoration:none;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header style="overflow:hidden">
         <div id="header">header</div>
-        <div id="ha">haha</div>
-        <p>jinoo blog</p>
+        <div id="ha">hahaha</div>
+        <p><a href="https://blog.naver.com/wlsdntyd" rel="blog" target="_blank">jinoo blog</a></p>
         <p>hello world</p>
         <p>html&css</p>
     </header>
 
     <nav>
-        <ul style="list-style: none;">
-            <li id="op1">option1</li>
-            <li>option2</li>
-            <li>option3</li>
-            <li>option4</li>
-            <li>option5</li>
-            <li>option6</li>
+        <p>A</p>
+        <p>B</p>
+        <p>C</p>
+        <ul style="list-style: none;"><!-- style float:left 알아두기-->
+            <li class="gg"><a href="http://www.google.com" target="_blank">google</a></li>
+            <li><a href="http://www.naver.com" target="_blank">naver</a></li>
+            <li class="gg"><a href="http://www.nate.com" target="_blank">nate</a></li>
+            <li><a href="http://www.yahoo.com" target="_blank">yahoo</a></li>
         </ul>
     </nav>
 
