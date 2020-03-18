@@ -1,0 +1,164 @@
+﻿form {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #b8eaa9;
+    border: 5px solid #808080;
+    width: 350px;
+    height: auto;
+    border-radius: 20px;
+}
+
+footer > p {
+    text-align: center;
+    font-weight: bold;
+}
+
+#header, #footer {
+    margin: 0 auto;
+    padding: 10px;
+    width: 500px;
+    height: 50px;
+    border: 1px solid #ff0000;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+nav li:hover {
+    color: blue;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+header div#ha ~ p {
+    font-weight: bold;
+}
+
+nav li:active {
+    color: red;
+}
+
+ul > li:nth-child(2n+1) {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+nav li::first-letter {
+    font-size: 2em;
+}
+
+nav li > a::after {
+    content: ' - ' attr(href);
+}
+
+nav li:not(.gg) {
+    background-color: aqua;
+}
+nav ul {
+    margin: 10px auto;
+    text-align: center;
+    width: 800px;
+}
+header > div#ha {
+    width: 400px;
+    height: 130px;
+    border: 1px solid #000000;
+    margin: 10px auto;
+}
+header > div > p::selection {
+    background-color: darkgoldenrod;
+    color: yellow;
+}
+
+header > div > p {
+    border: 3px solid #ff0000;
+    float: left;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: red;
+    box-sizing: border-box;
+    margin: 15px 15px;
+    opacity: 0.5;
+}
+nav > div {
+    margin: 0 auto;
+    width:200px;
+    height:70px;
+    border:2px solid #000000;
+}
+
+nav p {
+    text-decoration: underline;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 5px;
+}
+
+header a {
+    text-decoration: none;
+}
+section > div#outbox {
+    margin: 5px auto;
+    width: 600px;
+    height: 250px;
+    border: 1px solid #000000;
+}
+section > div#outbox > div#box-top {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 5px auto;
+    width: 580px;
+    height: 50px;
+    border: 1px solid #000000;
+}
+section > div#outbox > div#box-mid {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 5px auto;
+    width: 580px;
+    height: 120px;
+    line-height: 120px;
+    border: 1px solid #000000;
+    position: relative;
+}
+section > div#outbox > div#box-btm {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 5px auto;
+    width: 580px;
+    height: 50px;
+    border: 1px solid #000000;
+}
+section > div#outbox > div#box-mid > div#mid1 {
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border: 1px solid #000000;
+    background-color: #ff0000;
+    opacity: 0.7;
+}
+section > div#outbox > div#box-mid > div#mid2 {
+    position: absolute;
+    top: 10px;
+    left: 120px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border: 1px solid #000000;
+    background-color: #ff0000;
+    opacity: 0.7;
+}
