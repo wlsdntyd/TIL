@@ -1,0 +1,61 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+}
+a { text-decoration: none; }
+li { list-style: none; }
+header { width: 100%; }
+#header_top {
+    text-align: center;
+    background-color: aquamarine;
+    position: relative;
+    height: 40px;
+}
+#header_top a[alt="logo"] {
+    font-size: 1.5em; font-weight: bold; line-height: 40px; color: #bb05ef;
+}
+#header_top label {
+    position: absolute; left: 5px; top: 5px;
+}
+#header_top a:last-child {
+    position: absolute; right: 5px; top: 5px;
+}
+#header_btm { position: relative; }
+#header_btm input {
+    border: 5px solid #ff6a00;
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+}
+#header_btm a { position: absolute; right:0; top: 5px; }
+#toggle, #lnb { display: none; }
+#toggle:checked ~ nav > #lnb { display: block; }
+#lnb { width: 100%; }
+#lnb ul { overflow: hidden; margin: 5px 0;}
+#lnb li { width: 16.6%; float: left; 
+          text-align: center; border-right: 1px solid #808080; 
+          box-sizing: border-box; margin: 5px 0;
+}
+#lnb li:last-child { border: 0;}
+#section_content01 { overflow: hidden; }
+#section_content01 > div.row div { float: left; width: 50%; height: 200px; border: 1px solid #ffffff; 
+                         box-sizing: border-box;
+}
+#section_content02 li { width: 100%; white-space: nowrap; overflow: hidden;
+                        text-overflow: ellipsis; border-bottom: 1px solid #808080; margin-top: 5px;
+}
+#section_content02 a { color: #0b10f3; }
+#section_content03 li { margin: 5px; overflow: hidden; border: 1px solid #808080; box-sizing:border-box; }
+#section_content03 p.img { float: left; margin: 5px; width: 100px; height: 100px;}
+#section_content03 p.text { float: left; margin-top: 5px; }
+#section_content03 p.text span:first-child { font-weight: bold; color: #0b10f3; display:block; }
+#section_content03 p.text span:last-child { color: #808080; font-size: .9em; white-space: nowrap;
+                                            overflow: hidden; text-overflow: ellipsis; display:block;
+}
+#footer_wrap { width: 100%; text-align: center; }
+#footer_wrap p:first-child { border-bottom: 1px solid #808080; margin: 10px 0; }
+#footer_wrap p:last-child { height: 30px; line-height: 30px; font-size: .9em; color: #808080; }
