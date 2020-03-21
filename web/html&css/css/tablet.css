@@ -1,0 +1,68 @@
+﻿* { margin: 0; padding: 0; }
+body {
+    min-width: 1000px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a { text-decoration: none; }
+li { list-style: none; }
+#header {
+    height: 120px;
+    padding: 0 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #351d35;
+    background-color: #75356c
+}
+#header p { float: left; color: #ffffff; 
+            font-size: 2em; line-height: 120px;
+            font-weight: bold;
+}
+#nav_gnb { height: 80px; background-color: #2b2b2b; line-height: 80px; }
+#nav_gnb ul { overflow: hidden; }
+#nav_gnb li { float: left;
+}
+#nav_gnb a { color: #ffffff; text-align: center; display: block;
+             font-weight: bold; padding: 0 50px;
+             border-right: 1px solid #686868;
+}
+#section_wrap { overflow: hidden; background-color: #e1e262; }
+#section_wrap div#lnb { float: left; width: 250px; }
+div#lnb li a {
+    border-bottom: 1px dashed #868b43; color: #585716;
+    display: block; padding: 10px 20px;
+}
+#section_wrap div#content_wrap { 
+    float: left; width: 100%; margin-right: -250px;
+    background-color: #fcffce;
+}
+div#content_wrap div#content { padding: 20px; padding-right: 270px; }
+div#content h1 { font-size: 2em; }
+div#content p {  }
+div#content p:first-letter { font-size: 1.6em; }
+div#content p:first-line { font-size: 1.4em; color: #f65504; }
+div#content div { margin-bottom: 40px; }
+div#content div:nth-child(1) img {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+div#content div:nth-child(2) img { 
+    float: right;
+    margin: 0 0 10px 20px;
+}
+#content_bn ul { overflow: hidden; border-top: 1px dashed #cccccc;
+                 border-bottom: 1px dashed #cccccc; padding: 10px 0;
+}
+#content_bn li { float: left; margin: 0 5px; }
+#content_bn div::first-letter {
+    font-size: 1.6em;
+}
+
+#content_bn div::first-line {
+    font-size: 1.4em;
+    color: #f65504;
+}
+#content_bn li:last-child { width: 100%; margin: 0 -480px 0 0; }
+#content_bn li:last-child div { padding: 0 480px 0 10px; }
+#footer {
+    height: 100px; background-color: #f1f1f1;
+}
+#footer p { text-align: center; padding: 40px 0; }
