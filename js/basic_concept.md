@@ -320,7 +320,7 @@ one(1, 2);
 #### Apply 메소드
 
 ```javascript
-function sum() {	// 받는 매개변수가 없으므로 배열과 객체를 받으려면 apply를 써야한다.
+function sum() {
 	var _sum = 0;
 	for (name in this)	// apply 메소드 호출 시 인자 값의 객체가 this에 해당한다.
 		_sum += this[name];
@@ -418,3 +418,36 @@ if (funcThis === o2)
 ```
 
 > 생성자 함수를 통해 객체를 생성할 때와 그냥 함수로 쓸 때 this가 가리키는 것이 변하는 것을 알아두자.
+
+#### 함수가 객체인 이유
+
+```javascript
+var o1 = new Object();	// 객체 리터럴(객체)
+var o2 = {};
+
+var a1 = new Array();	// 배열 리터럴(객체)
+var a2 = [];
+
+var sum1 = new Function ('x','y','return x+y;');	// 함수 리터럴(객체)
+var sum2 = function (x, y) { return x + y; }
+```
+
+> 함수 또한 생성자를 통해 만들어진다. 고로 함수도 객체이다.
+
+#### Apply 의 추가 설명
+
+```javascript
+var o = {'a':10, 'b':20};
+var a = {};
+function sum() {
+	var _sum = 0;
+	for(key in this)
+		_sum += this[key];
+	return _sum;
+}
+sum();	// 이때 this는 window
+sum.apply(o);	// 30 이때 this는 o
+sum.apply(a);	// 이때 this는 a
+```
+
+> apply를 써야 객체에서의 접근이 가능하다.
