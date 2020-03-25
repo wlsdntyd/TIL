@@ -451,3 +451,35 @@ sum.apply(a);	// 이때 this는 a
 ```
 
 > apply를 써야 객체에서의 접근이 가능하다.
+
+#### 상속(inherit), Prototype, Chain
+
+```javascript
+function Computer(name) {
+	this.name = name;
+    this.n = 10;
+	this.namept = function () { console.log('name : ' + name) };
+}
+Computer.prototype.price = function () { console.log('10000 dollar'); }
+Computer.lg = function () { console.log(true); }	// prototype 지정 안해줘서 오류남.
+
+Notebook.prototype = new Computer(name);	// 상속을 생성자 안에서 해봤는데 안 됨.
+function Notebook(name) {
+    this.name = name;	// 없어도 된다.
+	this.pt = function () { console.log("i'm notebook!") };
+}
+var c1 = new Computer('jin');
+var n1 = new Notebook('jino');
+
+n1.namept();
+n1.price();
+console.log(n1.n)	// 셋 다 정상 실행
+```
+
+> 자바와 다르게 생성자 안에서 상속을 못 받는 부분이 아쉽다. 내가 아직 방법을 모르는 걸 수도 있는데,,
+>
+> 어쨋든 JS에선 바깥에서 prototype을 지정해서 상속을 해야한다. 바깥 부분에서 prototype을 이용한
+>
+> 메소드 추가하는 부분도 잘 봐두자. 아 chain은 상속이 여러번 이루어 질 때 계속해서 자식이 물려받기 때문에
+>
+> chain이란 이름이 붙은 것 같다.
