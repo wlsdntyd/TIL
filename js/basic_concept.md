@@ -483,3 +483,87 @@ console.log(n1.n)	// 셋 다 정상 실행
 > 메소드 추가하는 부분도 잘 봐두자. 아 chain은 상속이 여러번 이루어 질 때 계속해서 자식이 물려받기 때문에
 >
 > chain이란 이름이 붙은 것 같다.
+
+#### 표준 내장 객체(Standard Built-in Object)
+
+> 자바 스크립트가 기본적으로 가지고 있는 객체들을 의미한다.
+>
+> Object, Function, Array, String, Boolean, Number, Math, Date, RegExp 가 끝이다.
+>
+> 호스트환경이 제공하는 api를 따로 배워야 할 것이다. 보통 웹이나 node.js 같은?
+
+#### 배열의 확장
+
+```javascript
+var arr = new Array('seoul', 'new york', 'ladarkh', 'pusan', 'Tsukuba');
+
+function getRandomValueFromArray(array) {
+	var index = Math.floor(array.length * Math.random());	// floor는 소수점 이하 제거
+	return array[index];
+}
+console.log(getRandomValueFromArray(arr));
+Array.prototype.getRandomValue = function () {
+	var index = Math.floor(this.length * Math.random());
+	return this[index];
+}
+console.log(arr.getRandomValue());
+```
+
+> Array.prototype 을 통해서 Array객체의 메소드를 확장할 수 있다. 만약 Array.prototype이 아닌 최상위 객체
+>
+> Object를 확장한다면 여러 객체에서 접근할 수 있다. (Object.prototype ... )
+
+```javascript
+Object.prototype.contain = function (val) {
+	for (var key in this)
+		if (this[key] === val)
+			return true;
+	return false;
+}
+
+var o = { 'name': 'egoing', 'city': 'seoul' };
+var a = ['egoing', 'leezche', 'grapittie'];
+console.log(o.contain('seoul'));
+```
+
+> 위 코드는 정상적으로 실행이 되지만 최상위 객체 Object를 확장시켰으므로 위에서 정의한 객체 o 나 a 에도
+>
+> contain이라는 메소드가 존재하게 된다. 즉 불필요한 확장이 이루어졌으므로 위험성이 많다.
+>
+> 확장을 해야할 상황이 온다면 최소한의 확장으로 위험성을 줄일 필요가 있다.
+
+#### 기본 데이터 타입과 래퍼(wrapper) 객체
+
+숫자 --> Number(객체)
+
+문자열 --> String(객체)
+
+불리언 --> Boolean(객체)
+
+null --> X
+
+undefined --> X
+
+> 기본 데이터 타입을 객체화시켜 객체로서의 접근을 가능하게 해준다. (ex. name.toString() )
+
+#### 복제와 참조 and 함수
+
+```javascript
+var a = 10;
+function rep(b) {   // b = a; 기본 타입이므로 값만 복제.
+	b = 5;          // b = 10이 되었지만 b = 5 로 인해 b = 5가 맞음
+}
+console.log(a);		// 10
+```
+
+> 위의 동작원리는 굉장히 중요하다. 까먹지말자,,
+
+```javascript
+var a = { 'age': 10 };
+function rep(b) {			// b = a; 객체이므로 주소 값을 가진다. 즉 참조.
+	b = { 'age': 20 };		// 새로 만든 객체의 주소를 b에 넣는다.
+}
+console.log(a);	// {'age':10}
+```
+
+> 객체는 주소 값을 가진다는 것을 알아두자.
