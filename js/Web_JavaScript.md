@@ -60,3 +60,28 @@
 ```
 
 > 폼에서의 값 누락 시 경고창 띄우기.
+
+```javascript
+<body>
+    <p id="result"></p>
+    <input id="target" type="text" />
+    <script>
+        var t = document.getElementById('target');
+        t.addEventListener('change', function (event) {
+            document.getElementById('result').innerHTML = event.target.value;
+        });
+    </script> 
+</body>
+```
+
+#### JSON ( JavaScript Object Notation, 자바스크립트 객체 표기법 )
+
+> 서버와 데이터를 주고 받을 때 많이 사용한다. xml보다 json이 좋은 점이 많아 json을 많이 사용한다.
+
+```javascript
+// jQuery
+$('content').html('whatever');
+// JavaScript
+document.getElementById('content').innerHTML = 'wharever';
+```
+
