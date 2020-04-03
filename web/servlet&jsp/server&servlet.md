@@ -35,7 +35,7 @@ public class Nana extends HttpServlet {
 >
 > 할 경우 true로 설정하면 된다. 그리고 **문자를 쓰는데 다국어라면 Writer계열을 쓰는게 맞다.**
 
-#### 컴파일 및 설정
+#### 메모장에서의 컴파일 및 설정
 
 > 메모장으로 작성을 했다면(저장할 시 .java로) 명령 프롬프트로 javac 파일명.java를 적으면 된다.
 >
@@ -105,3 +105,29 @@ public class Nana extends HttpServlet {
 > 여기서 주의할 점은 **web.xml 파일에서 위 주석 처리한 코드를 true에서 false로 바꿔주어야한다.**
 >
 > true일 시 web.xml에서만 metadata를 찾는 것이고 false를 해야 다른 곳의 metadata까지 찾는다.
+
+#### 크롬과 엣지 웹 브라우저에서의 코드 해석
+
+```java
+@WebServlet("/hi")
+public class Nana extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter out = resp.getWriter();
+		
+		for(int i=0; i<100; i++)
+			out.println((i+1) + "Hello Servlet!!<br />");
+	}
+}
+// Chrome : 1Hello Servlet!!<br />
+// Edge : 1Hello Servlet!!
+```
+
+> 위 코드를 크롬과 엣지에서 실행해보면 크롬에서는 br태그까지 출력이 되는 반면 Edge에서는 안 보인다.
+>
+> 이유는 Edge에선 html로 해석하는 반면 크롬에선 text로 해석하기 때문인데 브라우저에 컨텐츠 형식을
+>
+> 알려주지 않아서 그렇다. 그렇기에 자의적으로 해석하여 뿌려준 것이다. 이를 보완하기 위해 출력 형식을
+>
+> 지정해주어야 한다.
