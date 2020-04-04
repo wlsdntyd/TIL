@@ -131,3 +131,108 @@ public class Nana extends HttpServlet {
 > 알려주지 않아서 그렇다. 그렇기에 자의적으로 해석하여 뿌려준 것이다. 이를 보완하기 위해 출력 형식을
 >
 > 지정해주어야 한다.
+
+#### 한글이 깨지는 이유
+
+> 위 코드에 한글을 적어서 출력을 해본다면 ?로 나오는 것을 볼 수 있다. 톰캣의 기본 인코딩 방식이
+>
+> 문자 하나에 1바이트를 차지하기 때문인데 영어는 1바이트로 출력이 가능한 반면 한글은 최소 2바이트를
+>
+> 차지하기 때문이다. 이럴 때는 utf-8로 인코딩을 하고 타입을 html과 utf-8로 지정해주어야한다.
+>
+> 지정해준다면 위의 br 태그는 정상적으로 실행될 것이다.
+
+```java
+response.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");	// html로 타입을 지정.
+```
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\content-type.png)
+
+#### GET 요청과 쿼리 스트링
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\get.png)
+
+```java
+response.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");
+PrintWriter out = response.getWriter();
+
+int cnt = Integer.parseInt(request.getParameter("cnt"));
+
+for(int i=0; i<cnt; i++)
+	out.println((i+1) + "안녕 Servlet!!<br />");
+```
+
+> 바깥 코드는 위와 같다.
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\getquery.png)
+
+> ?cnt=3 과 ?cnt= , ?, 아무것도 없는것 총 네 가지 경우의 수를 고려해서 코드를 짜야한다. "" 이것은 null값이
+>
+> 아닌 그냥 빈공간으로써 처리를 해주어야한다.
+
+```java
+response.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");
+PrintWriter out = response.getWriter();
+
+String cnt_ = request.getParameter("cnt");
+int cnt = 100;
+
+if(cnt_ != null && !cnt_.equals(""))	// 총 4가지 중 3가지 경우의 수 고려한 코드
+	cnt = Integer.parseInt(cnt_);		// 부족하긴하다. 문자열이 들어갈 수도 있으니
+
+for(int i=0; i<cnt; i++)
+	out.println((i+1) + "안녕 Servlet!!<br />");
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	환영합니다.<br >
+	<a href="hi">인사하기</a><br>	// /hi 페이지로 이동
+	<a href="hi?cnt=3">3번 인사하기</a><br>	// /hi?cnt=3 페이지로 이동
+</body>
+</html>
+```
+
+> 그냥 하면 재미없으니 WebContent 밑에 index.html을 만들어 구현해보자.
+
+#### Form 태그를 이용한 GET 요청(사용자 입력을 통한 요청)
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\getform.png)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<form action="hi">
+			<div>
+				<label>"안녕하세요"를 몇번 출력할까요? </label>
+			</div>
+			<div>
+				<input type="text" name="cnt" />
+				<input type="submit" value="출력" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+> hello.html을 작성해서 실행해보자.
+
+#### UTF-8 초기 값으로 설정하기
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\utf_setting.png)
