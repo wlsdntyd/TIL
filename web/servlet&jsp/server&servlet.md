@@ -236,3 +236,119 @@ for(int i=0; i<cnt; i++)
 #### UTF-8 초기 값으로 설정하기
 
 ![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\utf_setting.png)
+
+#### 입력 내용이 많을 경우 POST 요청으로 처리해야 한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<form action="notice-reg" method="post">
+			<div>
+				<label>제목 : </label><input name="title" type="text" >
+			</div>
+			<div>
+				<label>내용 : </label>
+				<textarea name="content"></textarea>
+			</div>
+			<div>
+				<input type="submit" value="등록" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+```java
+package com.newlecture.web;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/notice-reg")	// notice-reg 라는 url-pattern으로 이동
+public class noticeReg extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");	// 설정 안 해주면 요청 보낼 때 한글깨짐.
+		PrintWriter out = response.getWriter();
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		out.print(title + "<br>");
+		out.print(content);
+	}
+}
+```
+
+> 내용이 많을 경우 또는 회원가입 같은 경우는 POST 방식이 적합하다. 응답할 때 UTF-8로 지정해주어서
+>
+> 한글이 잘 출력됐다면 **요청(request)을 할 때도 한글로 서버에 요청을 보낸다면 서버로 보내는 과정에**
+>
+> **한글이 깨지지 않도록 요청 인코딩 형식 또한 UTF-8로 지정해주어야 한다.**
+
+#### 번거로운 인코딩을 위한 Filter 인터페이스 기능
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\filter.png)
+
+> 여기서 WAS는 톰캣에 해당한다 볼 수 있고 인코딩 형식이야 그냥 톰캣의 server.xml 파일에서 형식을
+>
+> UTF-8로 바꾸면 되긴 하지만 다른 서블릿들에게도 영향을 주게 되므로 원하는 서블릿들에게만
+>
+> 인코딩 형식을 지정해줄 수 있는 것을 Filter 기능이라 한다. 
+
+```xml
+<filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>com.newlecture.web.filter.CharacterEncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+> web.xml 에서의 filter 기능 추가 /* 는 모든 url에 적용되도록. 적는게 귀찮다면 annotation으로도 가능하다.
+
+```java
+package com.newlecture.web.filter;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter("/*")	// annotation을 이용한 필터 방법.
+public class CharacterEncodingFilter implements Filter {
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		
+		request.setCharacterEncoding("UTF-8");	// 번거로움을 줄여준다.
+		//System.out.println("before filter");
+		chain.doFilter(request, response);	// chain은 servlet으로 req와 res를 넘겨준다.
+		//System.out.println("after filter");
+	}
+}
+```
+
+> 매번 서블릿에 인코딩 형식을 지정해주는 번거로움을 없애주는 Filter 인터페이스의 기능이다.
