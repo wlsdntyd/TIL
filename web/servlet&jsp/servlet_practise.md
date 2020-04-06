@@ -33,3 +33,59 @@ public class calAdd extends HttpServlet {
 ```
 
 > 듣는 건 쉬웠으나 혼자하려니 힘들다.
+
+#### 여러 개의 Submit 버튼 사용하기 & 입력 데이터 배열로 받기
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calc</title>
+</head>
+<body>
+	<form action="add2" method="post">
+		<label>num : </label><input type="text" name="num">
+		<label>num : </label><input type="text" name="num">
+		<label>num : </label><input type="text" name="num">
+		<label>num : </label><input type="text" name="num">
+		<input type="submit" name="btn" value="plus">
+		<input type="submit" name="btn" value="div">
+	</form>
+</body>
+</html>
+```
+
+```java
+@WebServlet("/add2")
+public class Add2 extends HttpServlet {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html ; UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String[] nums = request.getParameterValues("num");
+		String btn = request.getParameter("btn");
+		int result = 0;
+		
+		if(btn.equals("plus")) {
+			for(int i=0; i<nums.length; i++) {
+				int num = Integer.parseInt(nums[i]);
+				result += num;
+			}
+		}
+		else if(btn.equals("div")) {
+			for(int i=0; i<nums.length; i++) {
+				int num = Integer.parseInt(nums[i]);
+				if(i == 0)
+					result += num;
+				else
+					result -= num;
+			}
+		}
+		out.print("result : " + result);
+	}
+}
+```
+
+> getParameterValues 메소드 알아두자.

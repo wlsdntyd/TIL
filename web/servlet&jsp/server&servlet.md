@@ -352,3 +352,60 @@ public class CharacterEncodingFilter implements Filter {
 ```
 
 > 매번 서블릿에 인코딩 형식을 지정해주는 번거로움을 없애주는 Filter 인터페이스의 기능이다.
+
+#### ServletContext 저장소 객체 사용
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\servletcontext.png)
+
+> 서블릿에서 요청이 들어올 시 메모리에 올라왔다가 바로 사라지는데 서블릿 Context를 이용하면 저장을
+>
+> 해둘 수 있다. 서블릿 Context는 서블릿들이 자원을 공유할 수 있는 저장소라고 볼 수 있다.
+>
+> Application 에서는 application 저장소라고 한다.
+
+```java
+@WebServlet("/add3")
+public class serialAdd extends HttpServlet {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html ; UTF-8");
+		ServletContext application = request.getServletContext();
+		PrintWriter out = response.getWriter();
+		
+		String num = request.getParameter("val");
+		String op = request.getParameter("operator");
+		int n = Integer.parseInt(num);
+		if(op.equals("+"))
+			application.setAttribute("ns", n);
+		else if(op.equals("-"))
+			application.setAttribute("ns", -n);
+		else {
+			int result = (Integer)application.getAttribute("ns");
+			out.print("result : " + result);
+		}
+	}
+}
+// HttpSession session = request.getSession(); 세션 객체도 사용할 수 있다.
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Serial Calc</title>
+</head>
+<body>
+	<form action="add3" method="post">
+		<label>value : </label><input type="text" name="val">
+		<input type="submit" value="+" name="operator">
+		<input type="submit" value="-" name="operator">
+		<input type="submit" value="=" name="operator">		
+	</form>
+</body>
+</html>
+```
+
+> 대충 해봤는데 값을 하나씩 밖에 못한다. 다 계산해서 출력하는 건 나중에 꼭 해봐야지
+
