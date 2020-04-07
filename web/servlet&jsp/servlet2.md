@@ -145,6 +145,7 @@ public class Add4 extends HttpServlet {
 			bt.setPath("/add4");
 			response.addCookie(n);	// 클라이언트 저장소에 저장
 			response.addCookie(bt);
+            response.sendRedirect("add4.html");	// add4.html 페이지로 이동.
 		}
 	}
 }
@@ -169,3 +170,30 @@ public class Add4 extends HttpServlet {
 > 이 메소드를 설정해준다면 브라우저가 닫혀도 그 시간만큼은 만료가 되지 않고 저장소에 저장되어있다.
 >
 > 저장소는 메모리와 파일 두 곳에 모두 저장이 된다.
+
+### Application & Session & Cookie 저장소의 상태 저장 특징
+
+> 세션 아이디는 쿠키로 전달이 되고 그 쿠키 만료가 되면 세션 아이디를 다시 받아야 한다.
+
+##### Application : 저장 공간은 WAS 서버의 메모리
+
+> 사용 범위 : 전역 범위에서 사용하는 저장 공간.
+>
+> 생명 주기 : WAS가 시작해서 종료할 때 까지.
+
+##### Session : 브라우저를 실행한 상태, 저장 공간은 WAS 서버의 메모리
+
+> 생명 주기 : 세션이 시작해서 종료할 때 까지. 보통 브라우저를 닫을 때 사라진다.
+
+##### Cookie : 클라이언트의 공간에 저장되어 있으므로 브라우저가 닫혀도 사라지지 않는다.
+
+> 사용 범위 : Web Browser 별 지정한 path 범주의 공간에서 사용 가능하다.
+>
+> 생명 주기 : Browser에 전달한 시간부터 만료시간까지.
+>
+> 저장 위치 : Web Browser의 메모리 또는 파일.
+
+#### response.sendRedirect("add4.html");
+
+> 해당 url로 이동하는 메소드. 
+
