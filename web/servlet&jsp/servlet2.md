@@ -197,3 +197,10 @@ public class Add4 extends HttpServlet {
 
 > 해당 url로 이동하는 메소드. 
 
+#### GET 과 POST 처리하기
+
+> Servlet에서 service 메소드를 호출했다면 super();를 지우고 if(req.getMethod().equals("GET")) 이렇게
+>
+> 처리를 하든 super()를 냅두고 doGET 와 doPOST 메소드를 호출하여 get일 때와 post일 시 경우를
+>
+> 처리해주면 된다.
