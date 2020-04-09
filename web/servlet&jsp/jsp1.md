@@ -99,3 +99,36 @@ public class Spag extends HttpServlet {
 ```
 
 > dispatcher의 forward 메소드로 데이터를 jsp파일과 이어줄 수 있다는 것을 알아두자.
+
+#### Expression Language
+
+```java
+String[] names = {"jinoo", "ji", "no"};
+request.setAttribute("names", names);
+Map<String, Object> notice = new HashMap<String, Object>();
+notice.put("id", 1);
+notice.put("title", "EL은 좋다?");
+request.setAttribute("notice", notice);
+pageContext.setAttribute("result",100);
+// ----------------------------------------- 위 : Servlet, 밑 : JSP
+<%=request.getAttribute("result") %> 입니다.<br >
+${result}<br>	// 우선순위로 인해 위의 페이지 저장소에서 값 가져오게됨.
+${names[0]}<br>
+${notice.id}<br>
+${pageScope.result}<br>	// 해당 영역에서 찾을 때 쓰임.(scope)
+${param.n} // 파라미터 값 출력
+${header.accept}	// 헤더의 accept값 출력
+${empty param.n}	// 비어있는지(""), null 인지 체크, 비어있다면 true
+${empty param.n ? '값이 비어있습니다':param.n}	// 체크해서 값이 있다면 값을 출력.
+```
+
+> EL : get메소드를 통해 데이터를 불러오는 번거로움을 줄여주는 언어라 볼 수 있다.
+>
+> 상황에 따른 사용법을 익혀두자. EL에는 연산자 또한 있으니 lt, gt, le, ge, empty 등 알아두자
+
+#### Page, Request, Session, Application 4 가지의 저장소
+
+각 저장소에 키 이름이 같을 경우 위 적은 순수대로 우선 순위로 인해 값을 가져온다.
+
+해당 영역에서 값을 가져올 경우 requestScope.키이름 이런 식으로 접근하면 된다.
+
