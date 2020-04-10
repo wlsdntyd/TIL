@@ -132,3 +132,23 @@ ${empty param.n ? '값이 비어있습니다':param.n}	// 체크해서 값이 �
 
 해당 영역에서 값을 가져올 경우 requestScope.키이름 이런 식으로 접근하면 된다.
 
+#### 4가지의 코드 블록
+
+```
+<% %>
+<%= %>
+<%! %>
+<%@ %>
+```
+
+#### html 에서 JSP로 바꿀 시 주의 사항
+
+한글이 깨지는 경우 ALT + Enter로 속성에 들어간 뒤 인코딩을 UTF-8로 바꿔주면 된다.
+
+또한 jsp페이지에서 페이지 인코딩을 해줘야한다.
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+```
+
