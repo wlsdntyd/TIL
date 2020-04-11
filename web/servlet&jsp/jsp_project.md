@@ -538,3 +538,9 @@ rs.next();
 	%>
 ```
 
+#### MVC(model view controller) model1 방식으로 변경(미완성)
+
+
+
+
+

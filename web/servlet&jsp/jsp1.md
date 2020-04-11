@@ -152,3 +152,8 @@ ${empty param.n ? '값이 비어있습니다':param.n}	// 체크해서 값이 �
     pageEncoding="UTF-8"%>
 ```
 
+#### MVC (model view controller)
+
+화면을 뿌려주는 view,  데이터를 제어하는 controller, 둘 사이를 잇는 데이터(모델) model 이라해서
+
+MVC 라 한다.
