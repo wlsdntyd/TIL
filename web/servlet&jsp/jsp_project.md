@@ -542,7 +542,7 @@ rs.next();
 	%>
 ```
 
-#### MVC(model view controller) model1 방식으로 변경(미완성)
+#### MVC(model view controller) model1 방식으로 변경
 
 > list.jsp 는 똑같다. 코드 블록을 다 위로 올려서 controller와 view 파트로 나누었다.
 
@@ -804,6 +804,76 @@ con.close();
         </footer>
     </body>    
     </html>
+```
+
+#### MVC model2 로 변경
+
+model2 같은 경우 컨트롤러와 뷰가 물리적으로 분리되어있기 때문에 컨트롤러(Servlet)를 추가하였다.
+
+request 저장소를 이용하여 데이터를 뷰(JSP)로 넘겨주는 방식으로 구현하였다.(forward)
+
+뷰 같은 경우 필요한 데이터를 쓸 때 request.getAttribute() 메소드를 사용하면 되므로 뷰는 생략.
+
+```java
+package com.newlecture.web.controller;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/notice/detail")
+public class NoticeDetailController extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE WHERE ID=?";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "1234");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+
+			String title = rs.getString("TITLE");
+			Date regdate = rs.getDate("REGDATE");
+			String writerId = rs.getString("WRITER_ID");
+			String hit = rs.getString("HIT");
+			String files = rs.getString("FILES");
+			String content = rs.getString("CONTENT");
+			
+			request.setAttribute("title", title);
+			request.setAttribute("regdate", regdate);
+			request.setAttribute("writerId", writerId);
+			request.setAttribute("hit", hit);
+			request.setAttribute("files", files);
+			request.setAttribute("content", content);
+			   
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// forward
+		request.getRequestDispatcher("/notice/detail.jsp").forward(request, response);
+	}
+}
 ```
 
 
