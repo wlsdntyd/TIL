@@ -998,3 +998,94 @@ ${n.files}
 ```
 
 > 화면에 뿌려주는 페이지에서 html 코드 중간 중간에 원하는 값을 넣기 위해 EL 표현식으로 접근하면 된다.
+
+#### 목록 페이지도 MVC model2로 만들기
+
+컨트롤러에 NoticeListController를 만들어서 글 목록들도 mvc 모델로 구현하자.
+
+```java
+package com.newlecture.web.controller;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.newlecture.web.entity.Notice;
+
+@WebServlet("/notice/list")
+public class NoticeListController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Notice> list = new ArrayList<>();
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "1234");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				Date regdate = rs.getDate("REGDATE");
+				String writerId = rs.getString("WRITER_ID");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				String content = rs.getString("CONTENT");
+				
+				Notice notice = new Notice(id, title, regdate, writerId, hit, files, content);
+				list.add(notice);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/notice/list.jsp").forward(request, response);
+	}
+}
+```
+
+```jsp
+<tbody>
+<%
+List<Notice> list = (List<Notice>)request.getAttribute("list");
+for(Notice n : list){
+	pageContext.setAttribute("n", n);
+%>	
+<tr>
+<td>${n.id}</td>
+<td class="title indent text-align-left"><a href="detail?id=${id}"></a>${n.title}</td>
+<td>${n.writerId}</td>
+<td>${n.regdate}</td>
+<td>${n.hit}</td>
+</tr>
+<%} %>
+</tbody>
+```
+
+> 컨트롤러에서 forward로 이어받은 데이터들을 request.get으로 받은 뒤 형 변환하여 리스트 형식으로
+>
+> 만들어준다. 바로 화면에 뿌려주는게 안되서 페이지 저장소에 저장 후 n.title 형식으로 뽑아준다.
+>
+> 더 나은 방법은 다음 시간에 해보자.
