@@ -1074,11 +1074,11 @@ for(Notice n : list){
 	pageContext.setAttribute("n", n);
 %>	
 <tr>
-<td>${n.id}</td>
-<td class="title indent text-align-left"><a href="detail?id=${id}"></a>${n.title}</td>
-<td>${n.writerId}</td>
-<td>${n.regdate}</td>
-<td>${n.hit}</td>
+    <td>${n.id}</td>
+    <td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
+    <td>${n.writerId}</td>
+    <td>${n.regdate}</td>
+    <td>${n.hit}</td>
 </tr>
 <%} %>
 </tbody>
@@ -1089,3 +1089,33 @@ for(Notice n : list){
 > 만들어준다. 바로 화면에 뿌려주는게 안되서 페이지 저장소에 저장 후 n.title 형식으로 뽑아준다.
 >
 > 더 나은 방법은 다음 시간에 해보자.
+
+#### view 페이지 은닉하기
+
+```java
+request.getRequestDispatcher("/WEB-INF/view/notice/list.jsp").forward(request, response);
+request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request, response);
+```
+
+> 두 개의 컨트롤러에서 forward 하는 부분의 연결부분을 외부에서 접근할 수 없는 WEB-INF폴더 내에 위치
+>
+> 시킴으로써 view페이지를 은닉할 수 있다.
+
+#### JSTL을 이용한 목록페이지 구현 (JSP Standard Tag Library)
+
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:forEach var="n" items="${list}">
+<tr>
+    <td>${n.id}</td>
+    <td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
+    <td>${n.writerId}</td>
+    <td>${n.regdate}</td>
+    <td>${n.hit}</td>
+</tr>
+</c:forEach>
+```
+
+> 먼저 jstl1.2 버전을 다운받고 WEB-INF > lib > 여기에 jstl.jar파일을 위치시켜준다.
+>
+> 상단 부분에 taglib 태그를 적어준 뒤 c:forEach 태그로 EL표현식으로 따온 list데이터를 pageContext.setAttribute("n", n) 에 저장되는 작업을 암묵적으로 실행해준다.
