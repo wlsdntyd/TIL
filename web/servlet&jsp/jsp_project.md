@@ -1119,3 +1119,9 @@ request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request,
 > 먼저 jstl1.2 버전을 다운받고 WEB-INF > lib > 여기에 jstl.jar파일을 위치시켜준다.
 >
 > 상단 부분에 taglib 태그를 적어준 뒤 c:forEach 태그로 EL표현식으로 따온 list데이터를 pageContext.setAttribute("n", n) 에 저장되는 작업을 암묵적으로 실행해준다.
+
+#### 중간정리
+
+![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\jsp.png)
+
+> 중간에 application, page, session, cookie 라는 상태 저장소라는 것 또한 배웠다.
