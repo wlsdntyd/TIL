@@ -1105,9 +1105,9 @@ request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request,
 
 ```jsp
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:forEach var="n" items="${list}">
+<c:forEach var="n" items="${list}" varStatus="st">	// 인덱스 표시
 <tr>
-    <td>${n.id}</td>
+    <td>${st.index+1} / ${n.id}</td>	// 목록 표시 1 / 8
     <td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
     <td>${n.writerId}</td>
     <td>${n.regdate}</td>
@@ -1125,3 +1125,55 @@ request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request,
 ![](C:\Users\달려라\TIL\TIL\web\servlet&jsp\jsp.png)
 
 > 중간에 application, page, session, cookie 라는 상태 저장소라는 것 또한 배웠다.
+
+#### 페이지 처리하기
+
+```jsp
+<div>		
+    <c:set var="page" value="${(param.p == null)?1:param.p}"/>
+    <c:set var="startNum" value="${page-(page-1)%5}" />
+    <c:set var="lastNum" value="23" />
+		
+    <c:if test="${startNum>1}">
+        <a href="?p=${startNum-1}&t=&q=" class="btn btn-prev" >이전</a>
+    </c:if>
+    <c:if test="${startNum<=1}">
+        <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+    </c:if>
+</div>
+
+<ul class="-list- center">
+	<c:forEach var="i" begin="0" end="4">
+	<li><a class="-text- orange bold" href="?p=${startNum+i}&t=&q=" >${startNum+i}</a></li>
+	</c:forEach>		
+</ul>
+<div>
+	<c:if test="${startNum+5<lastNum}">
+		<a href="?p=${startNum+5}&t=&q=" class="btn btn-next">다음</a>
+	</c:if>
+	<c:if test="${startNum+5>=lastNum}">
+		<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+	</c:if>
+</div>
+```
+
+> EL 표현식의 내장객체 param을 이용하여 p값을 요청할(get) 때 값을 저장해주는 기능을 통해
+>
+> 페이지 처리를 도와준다. 표현식을 잘 봐두자
+
+#### 첨부파일 업로드
+
+```jsp
+<td colspan="3" style="text-align:left; text-indent:10px;">
+<c:forTokens var="fileName" items="${n.files}" delims="," varStatus="st">
+	<a href="${fileName}">${fileName}</a>
+	<c:if test="${!st.last}">
+	/
+	</c:if>
+</c:forTokens>
+</td>
+```
+
+> ( !st.last ) 이 부분은 마지막이 아니라면 실행이 되게끔 해준다. Tokens에서는 구분자로 ,를 사용하여
+>
+> 변수 하나 하나의 이름을 fileName으로 받아주는 것이다. text-indent를 통해 들여쓰기를 했다.
