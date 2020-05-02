@@ -1177,3 +1177,14 @@ request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request,
 > ( !st.last ) 이 부분은 마지막이 아니라면 실행이 되게끔 해준다. Tokens에서는 구분자로 ,를 사용하여
 >
 > 변수 하나 하나의 이름을 fileName으로 받아주는 것이다. text-indent를 통해 들여쓰기를 했다.
+
+#### 숫자 출력 형식 지정하기
+
+```jsp
+<th>조회수</th>
+<td><fmt:formatNumber value="${n.hit}" /></td>
+```
+
+> formatNumber에는 type 지정과 pattern을 지정해줄 수도 있는데 type="number" pattern="#,###원"
+>
+> 이런 형식을 통해 끝에 원자를 넣어줄 수도 있다. 지정을 안해주면 디폴트 값으로 세자리씩 콤마만 넣어준다.
